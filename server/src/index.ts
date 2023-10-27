@@ -3,12 +3,15 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
+import { userRouter } from "./routes/user";
+
 const app = express();
+const PORT = process.env.PORT || 6000;
 
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 6000;
+app.use("/user", userRouter);
 
 mongoose
   .connect(process.env.CONNECTION_URL)
