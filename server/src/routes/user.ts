@@ -65,7 +65,16 @@ export const verifyToken = (
 ) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
+    jwt.verify(authHeader, process.env.SECRET_KEY, (error) => {
+      if (error) {
+        return res.sendStatus(403);
+      }
+
+      next();
+    });
   }
+
+  return res.sendStatus(401);
 };
 
 export { router as userRouter };
