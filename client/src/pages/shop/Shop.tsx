@@ -7,7 +7,7 @@ const ShopPage = () => {
     <div>
       <div>
         {products.map((product) => (
-          <Product product={product} />
+          <Product product={product} key={product._id} />
         ))}
       </div>
     </div>

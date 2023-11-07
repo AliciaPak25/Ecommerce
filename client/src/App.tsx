@@ -30,3 +30,8 @@ function App() {
 export default App;
 
 // Integrate Paypal
+/* Some features I can add: 
+- Make the UI look better.
+- Add the functionality of actually purchasing items.
+- Add the functionality of logging in as an admin and adding the products from inside of the web page.
+*/

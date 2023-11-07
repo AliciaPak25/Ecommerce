@@ -3,11 +3,13 @@ import { IShopContext, ShopContext } from "../../context/shop-context";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { IProduct } from "../../models/interfaces";
 import { CartItem } from "./CartItem";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
-  const { getCartItemCount, getTotalCartAmount } =
+  const { getCartItemCount, getTotalCartAmount, checkout } =
     useContext<IShopContext>(ShopContext);
   const { products } = useGetProducts();
+  const navigate = useNavigate();
 
   const totalAmount = getTotalCartAmount();
   return (
@@ -23,11 +25,15 @@ const CheckoutPage = () => {
         })}
       </div>
 
-      <div>
-        <p>Subtotal: ${totalAmount}</p>
-        <button>Continue Shopping</button>
-        <button>Checkout</button>
-      </div>
+      {totalAmount > 0 ? (
+        <div>
+          <p>Subtotal: ${totalAmount.toFixed(2)}</p>
+          <button onClick={() => navigate("/")}>Continue Shopping</button>
+          <button onClick={checkout}>Checkout</button>
+        </div>
+      ) : (
+        <h1>Your Shopping Cart is Empty.</h1>
+      )}
     </div>
   );
 };

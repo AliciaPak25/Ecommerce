@@ -1,28 +1,38 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import shoppingCart from "../assets/icons/MdiCartOutline.svg";
 import menu from "../assets/icons/MdiMenu.svg";
 import close from "../assets/icons/MdiClose.svg";
+import { IShopContext, ShopContext } from "../context/shop-context";
 
 const NavLinks = () => {
+  const { availableMoney, isAuthenticated, setIsAuthenticated } =
+    useContext<IShopContext>(ShopContext);
+
+  const logout = () => {
+    setIsAuthenticated(false);
+  };
   return (
     <>
       <Link to="/" className="">
         Shop
       </Link>
-      <Link to="/purchased-items" className="">
-        Purchases
-      </Link>
-      <Link to="/" className="">
-        Contact
-      </Link>
-      <Link to="/checkout">
-        <img src={shoppingCart} alt="shopping-cart" className="h-6 w-6" />
-      </Link>
-      <Link to="/" className="">
-        Log in
-      </Link>
+      {!isAuthenticated && <Link to="/auth">Login</Link>}
+      {isAuthenticated && (
+        <>
+          <Link to="/purchased-items" className="">
+            Purchases
+          </Link>
+          <Link to="/checkout">
+            <img src={shoppingCart} alt="shopping-cart" className="h-6 w-6" />
+          </Link>
+          <Link to="/auth" onClick={logout}>
+            Logout
+          </Link>
+          <span>${availableMoney.toFixed(2)}</span>
+        </>
+      )}
     </>
   );
 };

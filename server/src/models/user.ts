@@ -12,7 +12,7 @@ export interface IUser {
 const UserSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  availableMoney: { type: Number, default: 5000 },
+  availableMoney: { type: Number, default: 10000 },
   purchasedItems: [
     { type: Schema.Types.ObjectId, ref: "product", default: [] },
   ] /* list of IDs from MongoDB that is referencing another collection: the product collection. By default you have no purchased items. */,
