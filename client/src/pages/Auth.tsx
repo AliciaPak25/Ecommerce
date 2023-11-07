@@ -2,7 +2,7 @@ import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { UserErrors } from "../errors";
+import { UserErrors } from "../models/errors";
 
 const AuthPage = () => {
   return (
@@ -82,7 +82,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       let errorMessage: string = "";
-      switch (error.response.data.type) {
+      switch (error?.response?.data?.type) {
         case UserErrors.NO_USER_FOUND:
           errorMessage = "User doesn't exist";
           break;

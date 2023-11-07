@@ -9,16 +9,13 @@ const NavLinks = () => {
   return (
     <>
       <Link to="/" className="">
-        Home
-      </Link>
-      <Link to="/" className="">
-        Products
-      </Link>
-      <Link to="/" className="">
-        Contact
+        Shop
       </Link>
       <Link to="/purchased-items" className="">
         Purchases
+      </Link>
+      <Link to="/" className="">
+        Contact
       </Link>
       <Link to="/checkout">
         <img src={shoppingCart} alt="shopping-cart" className="h-6 w-6" />
