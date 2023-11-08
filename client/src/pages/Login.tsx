@@ -56,6 +56,9 @@ const LoginPage = () => {
             <h2 className="text-white text-lg ml-2">Stellar Style</h2>
           </div>
           <h2 className="my-2 text-xl font-semibold text-white">Login</h2>
+          <p className="small-medium md:base-regular text-[#8580aa]">
+            To shop in Stellar Style, please login.
+          </p>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-5 w-full mt-4"
@@ -72,7 +75,7 @@ const LoginPage = () => {
                 id="username"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
-                className="w-full mt-3 py-2 px-3 h-10 bg-[#201f23] text-slate-200 rounded outline-none border border-[#201f23] focus:border-[#7068d0] focus:ring-0"
+                className="w-full mt-3 py-2 px-3 h-10 bg-[#201f23] text-slate-200 rounded outline-none border border-[#201f23] focus:border-emerald-500 focus:ring-0"
               />
             </div>
 
@@ -88,12 +91,12 @@ const LoginPage = () => {
                 id="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="w-full mt-3 py-2 px-3 h-10 bg-[#201f23] text-slate-200 rounded outline-none border border-[#201f23] focus:border-[#7068d0] focus:ring-0"
+                className="w-full mt-3 py-2 px-3 h-10 bg-[#201f23] text-slate-200 rounded outline-none border border-[#201f23] focus:border-emerald-500 focus:ring-0"
               />
             </div>
             <button
               type="submit"
-              className="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-[#7068d0] hover:bg-indigo-700 border-[#7068d0] hover:border-indigo-700 text-white rounded-md w-full"
+              className="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-[#7f8c7b] hover:bg-[#576361] border-[#7f8c7b] hover:border-emerald-500 text-white rounded-md w-full"
             >
               Login
             </button>

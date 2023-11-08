@@ -10,7 +10,8 @@ const Product = (props: Props) => {
   const { _id, productName, descripton, price, stockQuantity, imageURL } =
     props.product;
 
-  const { addToCart, getCartItemCount } = useContext<IShopContext>(ShopContext);
+  const { addToCart, getCartItemCount, isAuthenticated } =
+    useContext<IShopContext>(ShopContext);
 
   const count = getCartItemCount(_id);
   console.log(count);
@@ -23,15 +24,18 @@ const Product = (props: Props) => {
         <p className="text-center text-sm text-gray-600">{descripton}</p>
         <p className="text-center text-base font-semibold">${price}</p>
       </div>
-      <button
-        onClick={() => addToCart(_id)}
-        className="bg-transparent border-2 border-solid bg-[#131313] text-white min-w-[100px] px-2.5 py-1.5 rounded-2xl flex justify-center items-center hover:bg-emerald-500 mb-4"
-      >
-        Add To Cart {count > 0 && <>({count})</>}
-      </button>
-
+      {isAuthenticated && (
+        <button
+          onClick={() => addToCart(_id)}
+          className="bg-black border-2 border-solid text-white min-w-[100px] px-2.5 py-1.5 rounded-2xl flex justify-center items-center hover:bg-emerald-500 mb-4"
+        >
+          Add To Cart {count > 0 && <>({count})</>}
+        </button>
+      )}
       <div>
-        {stockQuantity === 0 && <h1 className="text-black">OUT OF STOCK</h1>}
+        {stockQuantity === 0 && (
+          <h1 className="text-base text-center text-bold">OUT OF STOCK</h1>
+        )}
       </div>
     </div>
   );

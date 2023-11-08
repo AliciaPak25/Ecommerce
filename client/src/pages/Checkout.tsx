@@ -17,7 +17,7 @@ const CheckoutPage = () => {
       <div>
         <h1>Your Cart Items</h1>
       </div>
-      <div>
+      <div className="flex flex-col justify-center items-center">
         {products.map((product: IProduct) => {
           if (getCartItemCount(product._id) !== 0) {
             return <CartItem product={product} />;
@@ -28,8 +28,18 @@ const CheckoutPage = () => {
       {totalAmount > 0 ? (
         <div>
           <p>Subtotal: ${totalAmount.toFixed(2)}</p>
-          <button onClick={() => navigate("/")}>Continue Shopping</button>
-          <button onClick={checkout}>Checkout</button>
+          <button
+            onClick={() => navigate("/")}
+            className="w-40 h-14 bg-black text-white border-0 rounded-lg m-2.5"
+          >
+            Continue Shopping
+          </button>
+          <button
+            onClick={checkout}
+            className="w-40 h-14 bg-black text-white border-0 rounded-lg m-2.5"
+          >
+            Checkout
+          </button>
         </div>
       ) : (
         <h1>Your Shopping Cart is Empty.</h1>
