@@ -7,7 +7,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/product";
-import { verifyToken } from "./user";
+import { verifyToken } from "../utils/verifyToken";
 
 const router = Router();
 

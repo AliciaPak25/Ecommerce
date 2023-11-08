@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { IShopContext, ShopContext } from "../../context/shop-context";
-import { useGetProducts } from "../../hooks/useGetProducts";
-import { IProduct } from "../../models/interfaces";
-import { CartItem } from "./CartItem";
+import { IShopContext, ShopContext } from "../context/shop-context";
+import { useGetProducts } from "../hooks/useGetProducts";
+import { IProduct } from "../models/interfaces";
+import { CartItem } from "../components/CartItem";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {

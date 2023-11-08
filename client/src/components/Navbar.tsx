@@ -15,22 +15,26 @@ const NavLinks = () => {
   };
   return (
     <>
-      <Link to="/" className="">
+      <Link to="/" className="text-white">
         Shop
       </Link>
-      {!isAuthenticated && <Link to="/auth">Login</Link>}
+      {!isAuthenticated && (
+        <Link to="/login" className="text-white">
+          Login
+        </Link>
+      )}
       {isAuthenticated && (
         <>
-          <Link to="/purchased-items" className="">
+          <Link to="/purchased-items" className="text-white">
             Purchases
           </Link>
           <Link to="/checkout">
             <img src={shoppingCart} alt="shopping-cart" className="h-6 w-6" />
           </Link>
-          <Link to="/auth" onClick={logout}>
+          <Link to="/login" onClick={logout} className="text-white">
             Logout
           </Link>
-          <span>${availableMoney.toFixed(2)}</span>
+          <span className="text-white">${availableMoney.toFixed(2)}</span>
         </>
       )}
     </>
@@ -45,10 +49,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-[20] mx-auto flex w-full items-center justify-between border-b border-gray-500 p-0 flex-wrap md:p-6">
+    <div className="sticky top-0 z-[20] mx-auto flex w-full items-center justify-between shadow-sm shadow-gray-800 p-0 flex-wrap md:p-3 bg-black">
       <div className="flex w-1/3 justify-start items-center space-x-2 pl-2 pt-2 md:pl-0 md:pt-0">
-        <Logo />
-        <h1 className="hidden md:flex">Ecommerce Shop</h1>
+        <Link to="/">
+          <Logo />
+        </Link>
+        <Link to="/">
+          <h1 className="hidden md:flex text-white">Stellar Style</h1>
+        </Link>
       </div>
       <nav className="flex w-1/3 justify-end">
         <div className="hidden w-full justify-between md:flex">
