@@ -13,7 +13,7 @@ const CheckoutPage = () => {
 
   const totalAmount = getTotalCartAmount();
   return (
-    <div>
+    <div className="pb-16">
       <div>
         <h1 className="text-center text-xl md:text-3xl mt-8 font-bold text-emerald-500">
           Your Cart Items
@@ -22,7 +22,7 @@ const CheckoutPage = () => {
       <div className="flex flex-col justify-center items-center">
         {products.map((product: IProduct) => {
           if (getCartItemCount(product._id) !== 0) {
-            return <CartItem product={product} />;
+            return <CartItem product={product} key={product._id} />;
           }
         })}
       </div>

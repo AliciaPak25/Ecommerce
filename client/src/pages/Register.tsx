@@ -28,7 +28,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className="bg-black w-full h-screen py-36 flex items-center">
+    <section className="bg-black w-full h-screen py-36 flex items-center pb-44">
       <div className="container mx-auto px-4 relative">
         <div className="max-w-[400px] m-auto p-6 bg-black shadow-md shadow-gray-800 rounded-md">
           <div className="flex mb-4 items-center">

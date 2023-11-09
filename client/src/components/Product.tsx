@@ -14,7 +14,6 @@ const Product = (props: Props) => {
     useContext<IShopContext>(ShopContext);
 
   const count = getCartItemCount(_id);
-  console.log(count);
 
   return (
     <div className="rounded-ss-2xl w-80 m-28 mt-1 flex flex-col justify-center items-center hover:border hover:shadow-md hover:shadow-emerald-400 transition-color duration-300 h-fit">

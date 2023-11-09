@@ -5,7 +5,7 @@ const PurchasedItemsPage = () => {
   const { purchasedItems, addToCart, getCartItemCount } =
     useContext<IShopContext>(ShopContext);
   return (
-    <div>
+    <div className="pb-16">
       <h1 className="text-center text-xl md:text-3xl mt-8 font-bold text-emerald-500">
         Previously Purchased Items
       </h1>
@@ -13,7 +13,10 @@ const PurchasedItemsPage = () => {
         {purchasedItems.map((item) => {
           const count = getCartItemCount(item._id);
           return (
-            <div className="flex flex-col items-center justify-center mb-14 p-1 rounded-sm shadow-sm shadow-emerald-400">
+            <div
+              key={item._id}
+              className="flex flex-col items-center justify-center mb-14 p-1 rounded-sm shadow-sm shadow-emerald-400"
+            >
               <h3 className="text-center font-bold text-lg mb-2">
                 {item.productName}
               </h3>

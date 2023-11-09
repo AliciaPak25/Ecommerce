@@ -63,7 +63,8 @@ export const ShopContextProvider = (props) => {
 
       setAvailableMoney(res.data.availableMoney);
     } catch (error) {
-      alert("ERROR: Something went wrong.");
+      console.log("ERROR: Something went wrong.");
+      navigate("/login");
     }
   };
 
@@ -78,7 +79,8 @@ export const ShopContextProvider = (props) => {
 
       setPurchasedItems(res.data.purchasedItems);
     } catch (error) {
-      alert("ERROR: Something went wrong.");
+      console.log("ERROR: Something went wrong.");
+      navigate("/login");
     }
   };
 
