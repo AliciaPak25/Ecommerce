@@ -11,13 +11,17 @@ export const verifyToken = (
 ) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
-    jwt.verify(authHeader, process.env.SECRET_KEY, (error) => {
-      if (error) {
-        return res.sendStatus(403);
-      }
+    jwt.verify(
+      authHeader,
+      process.env.SECRET_KEY || "EcommerceSecretKey",
+      (error) => {
+        if (error) {
+          return res.sendStatus(403);
+        }
 
-      next();
-    });
+        next();
+      }
+    );
   } else {
     return res.sendStatus(401);
   }

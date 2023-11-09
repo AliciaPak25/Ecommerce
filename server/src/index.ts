@@ -20,9 +20,14 @@ app.use(
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
+app.get("/", (req: express.Request, res: express.Response) => {
+  res.json("Hello");
+});
 
 mongoose
-  .connect(process.env.CONNECTION_URL)
+  .connect(
+    "mongodb+srv://aliciapak:Ecommerce-Password-FTC-2023@ecommerce.8yfnjj6.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
   )

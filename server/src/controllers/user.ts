@@ -46,7 +46,7 @@ export const login = async (req: Request, res: Response) => {
       {
         id: user._id,
       },
-      process.env.SECRET_KEY
+      process.env.SECRET_KEY || "EcommerceSecretKey"
     ); /*   creates an encrypted version of the object (id: unique identifier for the user). This encrypted version would be the token. It's unique and encrypted for each user.*/
     res.json({ token, userID: user._id });
   } catch (error) {
