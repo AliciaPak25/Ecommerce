@@ -9,7 +9,9 @@ export const useGetProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const fetchedProducts = await axios.get("http://localhost:5000/product");
+      const fetchedProducts = await axios.get(
+        "https://stellar-style-api.vercel.app/product"
+      );
       setProducts(fetchedProducts.data.products);
     } catch (error) {
       console.log("ERROR: Something went wrong.");

@@ -19,10 +19,13 @@ const LoginPage = () => {
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     try {
-      const result = await axios.post("http://localhost:5000/user/login", {
-        username,
-        password,
-      });
+      const result = await axios.post(
+        "https://stellar-style-api.vercel.app/user/login",
+        {
+          username,
+          password,
+        }
+      );
       setCookies("access_token", result.data.token);
       localStorage.setItem("userID", result.data.userID);
       setIsAuthenticated(true);

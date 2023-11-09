@@ -1,9 +1,7 @@
-import { useState, SyntheticEvent, useContext } from "react";
+import { useState, SyntheticEvent } from "react";
 import axios from "axios";
-import { useCookies } from "react-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserErrors } from "../models/errors";
-import { IShopContext, ShopContext } from "../context/shop-context";
 import logo from "../assets/logo/hanger.png";
 
 const RegisterPage = () => {
@@ -13,7 +11,7 @@ const RegisterPage = () => {
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/register", {
+      await axios.post("https://stellar-style-api.vercel.app/user/register", {
         username,
         password,
       });

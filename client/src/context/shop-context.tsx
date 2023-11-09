@@ -55,7 +55,7 @@ export const ShopContextProvider = (props) => {
   const fetchAvailableMoney = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/user/available-money/${localStorage.getItem(
+        `https://stellar-style-api.vercel.app/user/available-money/${localStorage.getItem(
           "userID"
         )}`,
         { headers }
@@ -71,7 +71,7 @@ export const ShopContextProvider = (props) => {
   const fetchPurchasedItems = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/product/purchased-items/${localStorage.getItem(
+        `https://stellar-style-api.vercel.app/product/purchased-items/${localStorage.getItem(
           "userID"
         )}`,
         { headers }
@@ -155,9 +155,13 @@ export const ShopContextProvider = (props) => {
   const checkout = async () => {
     const body = { customerID: localStorage.getItem("userID"), cartItems };
     try {
-      await axios.post("http://localhost:5000/product/checkout", body, {
-        headers,
-      });
+      await axios.post(
+        "https://stellar-style-api.vercel.app/product/checkout",
+        body,
+        {
+          headers,
+        }
+      );
 
       setCartItems({});
       fetchAvailableMoney();
