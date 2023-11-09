@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["https://stellar-style-api.vercel.app"],
-    methods: ["POST", "GET", "PATCH", "DELETE"],
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
