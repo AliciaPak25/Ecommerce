@@ -10,7 +10,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://stellar-style-api.vercel.app"],
+    methods: ["POST", "GET", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
