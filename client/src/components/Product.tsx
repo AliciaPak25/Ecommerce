@@ -27,7 +27,12 @@ const Product = (props: Props) => {
       {isAuthenticated && (
         <button
           onClick={() => addToCart(_id)}
-          className="bg-black border-2 border-solid text-white min-w-[100px] px-2.5 py-1.5 rounded-2xl flex justify-center items-center hover:bg-emerald-500 mb-4"
+          className={
+            stockQuantity === 0
+              ? "bg-gray-800 border-2 border-solid text-gray-500 min-w-[100px] px-2.5 py-1.5 rounded-2xl flex justify-center items-center mb-4"
+              : "bg-black border-2 border-solid text-white min-w-[100px] px-2.5 py-1.5 rounded-2xl flex justify-center items-center hover:bg-emerald-500 mb-4"
+          }
+          disabled={stockQuantity === 0}
         >
           Add To Cart {count > 0 && <>({count})</>}
         </button>

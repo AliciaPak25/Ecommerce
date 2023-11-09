@@ -17,3 +17,8 @@
   background-size: cover;
   background-position: center center;
 }
+
+body {
+  position: relative;
+  min-height: 100vh;
+}

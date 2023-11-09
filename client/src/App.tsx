@@ -7,10 +7,11 @@ import CheckoutPage from "./pages/Checkout";
 import PurchasedItemsPage from "./pages/PurchasedItems";
 import "./App.css";
 import { ShopContextProvider } from "./context/shop-context";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <Router>
         <ShopContextProvider>
           <Navbar />
@@ -21,6 +22,7 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/purchased-items" element={<PurchasedItemsPage />} />
           </Routes>
+          <Footer />
         </ShopContextProvider>
       </Router>
     </div>

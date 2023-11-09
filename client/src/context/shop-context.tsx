@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 
 export interface IShopContext {
   addToCart: (itemId: string) => void;
+  decreaseCartQuantity: (itemId: string) => void;
   removeFromCart: (itemId: string) => void;
   updateCartItemCount: (newAmount: number, itemId: string) => void;
   getCartItemCount: (itemId: string) => number;
@@ -17,10 +18,12 @@ export interface IShopContext {
   purchasedItems: IProduct[];
   isAuthenticated: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+  cartQuantity: number;
 }
 
 const defaultValues: IShopContext = {
   addToCart: () => null,
+  decreaseCartQuantity: () => null,
   removeFromCart: () => null,
   updateCartItemCount: () => null,
   getCartItemCount: () => 0,
@@ -30,6 +33,7 @@ const defaultValues: IShopContext = {
   purchasedItems: [],
   isAuthenticated: false,
   setIsAuthenticated: () => null,
+  cartQuantity: 0,
 };
 
 export const ShopContext = createContext<IShopContext>(defaultValues);
@@ -42,6 +46,7 @@ export const ShopContextProvider = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     cookies.access_token !== null
   );
+  const [cartQuantity, setCartQuantity] = useState<number>(0);
 
   const { products } = useGetProducts();
   const { headers } = useGetToken();
@@ -91,18 +96,43 @@ export const ShopContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    // Increment cartQuantity when adding an item
+    setCartQuantity((prev) => prev + 1);
   };
 
-  const removeFromCart = (itemId: string) => {
+  const decreaseCartQuantity = (itemId: string) => {
     if (!cartItems[itemId]) return;
     if (cartItems[itemId] == 0) return;
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartQuantity((prev) => prev - 1);
   };
 
   // This function updates the amount of an item users wanna buy
   const updateCartItemCount = (newAmount: number, itemId: string) => {
     if (newAmount < 0) return;
+
+    const changeInQuantity = newAmount - (cartItems[itemId] || 0);
+
     setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
+
+    // Update the cart quantity based on the change
+    setCartQuantity((prev) => prev + changeInQuantity);
+  };
+
+  const removeFromCart = (itemId: string) => {
+    if (!cartItems[itemId]) {
+      // If the item is not in the cart, do nothing.
+      return;
+    }
+
+    // Decrement cartQuantity when removing an item
+    setCartQuantity((prev) => prev - cartItems[itemId]);
+
+    // Create a copy of the cart items without the specified item.
+    const updatedCart = { ...cartItems };
+    delete updatedCart[itemId];
+
+    setCartItems(updatedCart);
   };
 
   const getTotalCartAmount = (): number => {
@@ -130,6 +160,7 @@ export const ShopContextProvider = (props) => {
       setCartItems({});
       fetchAvailableMoney();
       fetchPurchasedItems();
+      setCartQuantity(0);
 
       navigate("/");
     } catch (error) {
@@ -153,6 +184,7 @@ export const ShopContextProvider = (props) => {
 
   const contextValue: IShopContext = {
     addToCart,
+    decreaseCartQuantity,
     removeFromCart,
     updateCartItemCount,
     getCartItemCount,
@@ -162,6 +194,7 @@ export const ShopContextProvider = (props) => {
     purchasedItems,
     isAuthenticated,
     setIsAuthenticated,
+    cartQuantity,
   };
   return (
     <ShopContext.Provider value={contextValue}>
