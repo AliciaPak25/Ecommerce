@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import { Response } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
@@ -20,8 +21,8 @@ app.use(
 
 app.use("/user", userRouter);
 app.use("/product", productRouter);
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.json("Hello");
+app.get("/", (res: Response) => {
+  res.json("Server is running");
 });
 
 mongoose
